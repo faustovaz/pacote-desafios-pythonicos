@@ -10,10 +10,12 @@ Exemplo: 'abcde', a metade da frente é 'abc' e a de trás é 'de'.
 Finalmente, dadas duas strings a e b, retorne uma string na forma:
 a-frente + b-frente + a-trás + b-trás
 """
-def front_back(a, b):
-    # +++ SUA SOLUÇÃO +++
-    return
+from math import floor
 
+def front_back(a, b):
+    a_index = floor(len(a) / 2) + (len(a) % 2)
+    b_index = floor(len(b) / 2) + (len(b) % 2)
+    return f'{a[:a_index]}{b[:b_index]}{a[a_index:]}{b[b_index:]}'
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
 
