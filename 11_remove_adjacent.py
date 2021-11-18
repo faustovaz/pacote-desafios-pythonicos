@@ -12,9 +12,7 @@ def remove_adjacent(nums):
     new_list = []
     for num in nums:
         size = len(new_list)
-        if size == 0:
-            new_list.append(num)
-        elif new_list[size - 1] != num:
+        if size == 0 or new_list[-1] != num:
             new_list.append(num)
     return new_list
 
