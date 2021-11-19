@@ -1,4 +1,4 @@
-"""
+"""Zimbra
 12. linear_merge
 
 Dada duas listas ordenadas em ordem crescente, crie e retorne uma lista
@@ -10,8 +10,19 @@ A sua solução deve rodar em tempo linear, ou seja, deve fazer uma
 """
 
 def linear_merge(list1, list2):
-    # +++ SUA SOLUÇÃO +++
-    return
+    "Merge a list in linear time"
+    merged_list = []
+    while (len(list1) + len(list2)) > 0:
+        if len(list1) == 0 and len(list2) > 0:
+            merged_list.append(list2.pop())
+        elif len(list1) > 0 and len(list2) == 0:
+            merged_list.append(list1.pop())
+        elif list1[-1] > list2[-1]:
+            merged_list.append(list1.pop())
+        else:
+            merged_list.append(list2.pop())
+    merged_list.reverse()
+    return merged_list
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
