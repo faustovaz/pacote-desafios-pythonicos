@@ -53,13 +53,34 @@ e conferindo cada etapa do seu progresso.
 
 import sys
 
+def count(filename):
+    with open(filename, 'r', encoding='utf-8') as file:
+        lines = [line.rstrip().lower() for line in file.readlines()]
+        words = " ".join(lines).split()
+        word_count = {}
+        for word in words:
+            word_count[word] = word_count.get(word, 0) + 1
+        return word_count
 
 # +++ SUA SOLUÇÃO +++
 # Defina as funções print_words(filename) e print_top(filename).
-
+def print_words(filename):
+    word_count = count(filename)
+    top_words = list(word_count.items())
+    top_words.sort(key=lambda i:i[0])
+    for key,value in top_words:
+        print(f'{key} {value}')
 
 # A função abaixo chama print_words() ou print_top() de acordo com os
 # parêtros do programa.
+def print_top(filename):
+    word_count = count(filename)
+    top_words = list(word_count.items())
+    top_words.sort(key=lambda i:i[-1], reverse=True)
+    for key, value in top_words[:10]:
+        print(f'{key} {value}')
+
+
 def main():
     if len(sys.argv) != 3:
         print('Utilização: ./13_wordcount.py {--count | --topcount} file')
