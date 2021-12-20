@@ -1,4 +1,4 @@
-"""Zimbra
+"""
 12. linear_merge
 
 Dada duas listas ordenadas em ordem crescente, crie e retorne uma lista
