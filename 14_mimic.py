@@ -59,24 +59,19 @@ def mimic_dict(filename):
     """Retorna o dicionario imitador mapeando cada palavra para a lista de
     palavras subsequentes."""
     file_words = get_words(filename)
-    m_dict = {'': [file_words[0]]}
-    for i, word in enumerate(file_words):
-        words = m_dict.get(word, [])
-        next_word_index = i + 1
-        if next_word_index < len(file_words):
-            if file_words[next_word_index] not in words:
-                words.append(file_words[next_word_index])
-        else:
-            words.append('')
-        m_dict[word] = words
+    m_dict = {word:[] for word in set(file_words)}
+    m_dict[''] = [file_words[0]]
+    for word, next_word in zip(file_words, file_words[1:]):
+        m_dict[word].append(next_word)
+    m_dict[file_words[-1]].append('')
     return m_dict
 
 def print_mimic(words_dict, word):
     """Dado o dicionario imitador e a palavra inicial, imprime texto de 200 palavras."""
-    word = words_dict[''][0]
+    word = list(words_dict[''])[0]
     words = [word]
     for i in range(199):
-        word = random.choice(words_dict.get(word))
+        word = random.choice(words_dict[word])
         words.append(word)
     print(" ".join(words))
 
